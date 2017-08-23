@@ -21,39 +21,23 @@
       <div class='tips'>editor账号:editor@wallstreetcn.com 密码随便填</div>
     </el-form>
 
-    <el-dialog title="第三方验证" :visible.sync="showDialog">
+    <!-- <el-dialog title="第三方验证" :visible.sync="showDialog">
       邮箱登录成功,请选择第三方验证
       <social-sign></social-sign>
-    </el-dialog>
+    </el-dialog> -->
 
   </div>
 </template>
 
 <script>
-  import { isWscnEmail } from 'utils/validate';
-  import socialSign from './socialsignin';
+  import { validateEmail, validatePass  } from 'utils/validate';
 
   export default {
-    components: { socialSign },
     name: 'login',
     data() {
-      const validateEmail = (rule, value, callback) => {
-        if (!isWscnEmail(value)) {
-          callback(new Error('请输入正确的合法邮箱'));
-        } else {
-          callback();
-        }
-      };
-      const validatePass = (rule, value, callback) => {
-        if (value.length < 6) {
-          callback(new Error('密码不能小于6位'));
-        } else {
-          callback();
-        }
-      };
       return {
         loginForm: {
-          email: 'admin@wallstreetcn.com',
+          email: '',
           password: ''
         },
         loginRules: {
@@ -73,13 +57,16 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
-              this.loading = false;
-              this.$router.push({ path: '/' });
-                // this.showDialog = true;
-            }).catch(() => {
-              this.loading = false;
-            });
+            this.$http.post('admin/base/login').then(res=>{
+              this.loading = false
+            })
+            // this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
+            //   this.loading = false;
+            //   this.$router.push({ path: '/' });
+            //     // this.showDialog = true;
+            // }).catch(() => {
+            //   this.loading = false;
+            // });
           } else {
             console.log('error submit!!');
             return false;

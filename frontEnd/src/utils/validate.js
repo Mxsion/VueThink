@@ -38,4 +38,19 @@ export function validatAlphabets(str) {
   return reg.test(str);
 }
 
+export const validateEmail = (rule, value, callback) => {
+  if (!isWscnEmail(value)) {
+    callback(new Error('请输入正确的合法邮箱'));
+  } else {
+    callback();
+  }
+};
+export const validatePass = (rule, value, callback) => {
+  if (value.length < 6) {
+    callback(new Error('密码不能小于6位'));
+  } else {
+    callback();
+  }
+};
+
 

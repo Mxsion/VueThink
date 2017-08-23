@@ -3,9 +3,9 @@
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
       <h3 class="title">系统登录</h3>
-      <el-form-item prop="email">
+      <el-form-item prop="usr_name">
         <span class="svg-container"><icon-svg icon-class="jiedianyoujian"></icon-svg></span>
-        <el-input name="email" type="text" v-model="loginForm.email" autoComplete="on" placeholder="邮箱"></el-input>
+        <el-input name="usrname" type="text" v-model="loginForm.usr_name" autoComplete="on" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container"><icon-svg icon-class="mima"></icon-svg></span>
@@ -37,12 +37,12 @@
     data() {
       return {
         loginForm: {
-          email: '',
+          usr_name: '',
           password: ''
         },
         loginRules: {
-          email: [
-                { required: true, trigger: 'blur', validator: validateEmail }
+          usr_name: [
+                { required: true, trigger: 'blur' }
           ],
           password: [
                 { required: true, trigger: 'blur', validator: validatePass }

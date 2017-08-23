@@ -3,9 +3,9 @@
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
       <h3 class="title">系统登录</h3>
-      <el-form-item prop="usr_name">
+      <el-form-item prop="username">
         <span class="svg-container"><icon-svg icon-class="jiedianyoujian"></icon-svg></span>
-        <el-input name="usrname" type="text" v-model="loginForm.usr_name" autoComplete="on" placeholder="用户名"></el-input>
+        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container"><icon-svg icon-class="mima"></icon-svg></span>
@@ -37,15 +37,15 @@
     data() {
       return {
         loginForm: {
-          usr_name: '',
-          password: ''
+          username: 'lijiacheng',
+          password: '668'
         },
         loginRules: {
-          usr_name: [
+          username: [
                 { required: true, trigger: 'blur' }
           ],
           password: [
-                { required: true, trigger: 'blur', validator: validatePass }
+                { required: true, trigger: 'blur' }
           ]
         },
         loading: false,
@@ -57,7 +57,7 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            this.$http.post('admin/base/login').then(res=>{
+            this.$http.post('admin/base/login', this.loginForm).then(res=>{
               this.loading = false
             })
             // this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {

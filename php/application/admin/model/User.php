@@ -209,22 +209,22 @@ class User extends Common
     //         }
     //     }
 
-		$map['username'] = $username;
+		$map['user_name'] = $username;
 		$userInfo = $this->where($map)->find();
     	if (!$userInfo) {
 			$this->error = '帐号不存在';
 			return false;
     	}
-    	if (user_md5($password) !== $userInfo['password']) {
-			$this->error = '密码错误';
-			return false;
-    	}
-    	if ($userInfo['status'] === 0) {
-			$this->error = '帐号已被禁用';
-			return false;
-    	}
+   //  	if (user_md5($password) !== $userInfo['password']) {
+			// $this->error = '密码错误';
+			// return false;
+   //  	}
+   //  	if ($userInfo['status'] === 0) {
+			// $this->error = '帐号已被禁用';
+			// return false;
+   //  	}
         // 获取菜单和权限
-        $dataList = $this->getMenuAndRule($userInfo['id']);
+        $dataList = $this->getMenuAndRule($userInfo['ID']);
 
         if (!$dataList['menusList']) {
 			$this->error = '没有权限';

@@ -57,7 +57,7 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            this.$http.post('admin/base/login', this.loginForm).then(res=>{
+            this.$http.post('api/base/login', this.loginForm).then(res=>{
               this.loading = false
             })
             // this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {

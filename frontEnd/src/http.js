@@ -18,7 +18,7 @@ axios.interceptors.request.use(config => {
 // http响应拦截器
 axios.interceptors.response.use(res => {// 响应成功关闭loading
   loadinginstace.close()
-  if(res.code !== 200){
+  if(res.data.code !== 200){
     Message.error({
       message: res.data.error
     })

@@ -24,7 +24,7 @@ module.exports = {
     },
     dev: {
         env: require('./dev.env'),
-        port: 9527,
+        port: 668,
         autoOpenBrowser: true,
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
@@ -33,6 +33,12 @@ module.exports = {
                 target: 'http://127.0.0.1:80',
                 pathRewrite: {
                   '^/admin': '/admin'
+                }
+            },
+            '/api': {
+                target: 'http://127.0.0.1:80',
+                pathRewrite: {
+                  '^/api': '/api'
                 }
             }
         },

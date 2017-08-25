@@ -1,7 +1,10 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { Loading, Message } from 'element-ui'
 // 超时时间
 axios.defaults.timeout = 5000
+// axios.defaults.headers.authKey = Cookies.get('authKey') || ''
+// axios.defaults.headers.sessionId = Cookies.get('sessionId') || ''
 // http请求拦截器
 var loadinginstace
 axios.interceptors.request.use(config => {

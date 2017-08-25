@@ -252,9 +252,9 @@ class User extends Common
         cache('Auth_'.$authKey, null);
         cache('Auth_'.$authKey, $info, config('LOGIN_SESSION_VALID'));
         // // 返回信息
-        // $data['authKey']		= $authKey;
-        // $data['sessionId']		= $info['sessionId'];
-		$data		     = $userInfo;
+        $data['authKey']		= $authKey;
+        $data['sessionId']		= $info['sessionId'];
+		$data		            = $userInfo;
 		$data['msg']            = '登录成功'; 
         // $data['authList']		= $dataList['rulesList'];
         // $data['menusList']		= $dataList['menusList'];

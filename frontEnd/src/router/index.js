@@ -55,7 +55,16 @@ export const constantRouterMap = [
       { path: 'countto', component: _import('components/countTo'), name: 'CountTo' },
       { path: 'mixin', component: _import('components/mixin'), name: '小组件' },
       { path: 'backtotop', component: _import('components/backToTop'), name: '返回顶部' },
-      { path: 'users', component: _import('users/index'), name: '用户列表' }
+    ]
+  },
+  {
+    path: '/users',
+    component: Layout,
+    redirect: '/users/index',
+    name: '用户管理',
+    icon: 'zujian',
+    children: [
+      { path: 'index', component: _import('users/index'), name: '用户列表' }
     ]
   }
 ]

@@ -31,7 +31,7 @@
 
 <script>
   import { validateEmail, validatePass  } from 'utils/validate';
-
+  import Cookies from 'js-cookie'
   export default {
     name: 'login',
     data() {
@@ -59,6 +59,8 @@
             this.loading = true;
             this.$http.post('api/base/login', this.loginForm).then(res=>{
               this.loading = false
+              Cookies.set('Admin-Token', res.data.chinese_name)
+              this.$router.push({path: '/'})
             })
             // this.$store.dispatch('LoginByEmail', this.loginForm).then(() => {
             //   this.loading = false;

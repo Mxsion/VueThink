@@ -17,7 +17,8 @@ router.beforeEach((to, from, next) => {
   NProgress.start() // 开启Progress
   if (getToken()) { // 判断是否有token
     if (to.path === '/login') {
-      next({ path: '/' })
+      //next({ path: '/' })
+      next()
     } else {
       next()
       // if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息

@@ -5,7 +5,7 @@
 // | Author: linchuangbin <linchuangbin@honraytech.com>
 // +----------------------------------------------------------------------
 
-namespace app\admin\controller;
+namespace app\api\controller;
 
 use think\Request;
 use think\Db;

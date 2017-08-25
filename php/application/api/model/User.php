@@ -47,7 +47,7 @@ class User extends Common
 	{
 		$map = [];
 		if ($keywords) {
-			$map['username|realname'] = ['like', '%'.$keywords.'%'];
+			$map['user_name|chinese_name'] = ['like', '%'.$keywords.'%'];
 		}
 
 		// 默认除去超级管理员
@@ -55,10 +55,10 @@ class User extends Common
 		$dataCount = $this->alias('user')->where($map)->count('id');
 		
 		$list = $this
-				->where($map)
-				->alias('user')
-				->join('__ADMIN_STRUCTURE__ structure', 'structure.id=user.structure_id', 'LEFT')
-				->join('__ADMIN_POST__ post', 'post.id=user.post_id', 'LEFT');
+				->where($map);
+				// ->alias('user')
+				// ->join('__ADMIN_STRUCTURE__ structure', 'structure.id=user.structure_id', 'LEFT')
+				// ->join('__ADMIN_POST__ post', 'post.id=user.post_id', 'LEFT');
 		
 		// 若有分页
 		if ($page && $limit) {
@@ -66,7 +66,7 @@ class User extends Common
 		}
 
 		$list = $list 
-				->field('user.*,structure.name as s_name, post.name as p_name')
+				->field('user.*')
 				->select();
 		
 		$data['list'] = $list;
@@ -242,20 +242,20 @@ class User extends Common
         // 	$data['rememberKey'] = encrypt($secret);
         // }
 
-        // 保存缓存        
-        // session_start();
-        // $info['userInfo'] = $userInfo;
-        // $info['sessionId'] = session_id();
-        // $authKey = user_md5($userInfo['username'].$userInfo['password'].$info['sessionId']);
-        // $info['_AUTH_LIST_'] = $dataList['rulesList'];
-        // $info['authKey'] = $authKey;
-        // cache('Auth_'.$authKey, null);
-        // cache('Auth_'.$authKey, $info, config('LOGIN_SESSION_VALID'));
+        //保存缓存        
+        session_start();
+        $info['userInfo'] = $userInfo;
+        $info['sessionId'] = session_id();
+        $authKey = user_md5($userInfo['user_name'].$userInfo['password'].$info['sessionId']);
+        //$info['_AUTH_LIST_'] = $dataList['rulesList'];
+        $info['authKey'] = $authKey;
+        cache('Auth_'.$authKey, null);
+        cache('Auth_'.$authKey, $info, config('LOGIN_SESSION_VALID'));
         // // 返回信息
         // $data['authKey']		= $authKey;
         // $data['sessionId']		= $info['sessionId'];
-		$data		= $userInfo;
-		// $data['msg']            = '登录成功'; 
+		$data		     = $userInfo;
+		$data['msg']            = '登录成功'; 
         // $data['authList']		= $dataList['rulesList'];
         // $data['menusList']		= $dataList['menusList'];
         return $data;

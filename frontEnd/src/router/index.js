@@ -54,7 +54,8 @@ export const constantRouterMap = [
       { path: 'sticky', component: _import('components/sticky'), name: 'Sticky' },
       { path: 'countto', component: _import('components/countTo'), name: 'CountTo' },
       { path: 'mixin', component: _import('components/mixin'), name: '小组件' },
-      { path: 'backtotop', component: _import('components/backToTop'), name: '返回顶部' }
+      { path: 'backtotop', component: _import('components/backToTop'), name: '返回顶部' },
+      { path: 'users', component: _import('users/index'), name: '用户列表' }
     ]
   }
 ]
@@ -94,7 +95,7 @@ export default new Router({
 //       { path: 'sticky', component: _import('components/sticky'), name: 'Sticky' },
 //       { path: 'countto', component: _import('components/countTo'), name: 'CountTo' },
 //       { path: 'mixin', component: _import('components/mixin'), name: '小组件' },
-//       { path: 'backtotop', component: _import('components/backToTop'), name: '返回顶部' }
+//       { path: 'index', component: _import('components/backToTop'), name: '返回顶部' }
 //     ]
 //   },
 //   {
